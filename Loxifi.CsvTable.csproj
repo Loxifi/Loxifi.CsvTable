@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<PackageProjectUrl>http://loxifi.com/Projects/Loxifi.CsvTable</PackageProjectUrl>
+		<Version>0.1.1</Version>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageIcon>Properties\Icon.png</PackageIcon>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<Description>
+			Provides a method of converting between CSV files and DataTables. This allows for loading, altering, and then saving the data again
+		</Description>
+		<PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+		<PackageLicenseFile>Properties\License.txt</PackageLicenseFile>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<RepositoryUrl>https://github.com/Loxifi/Loxifi.CsvTable.git</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="Properties\License.txt" Pack="true" PackagePath="Properties\License.txt" />
+		<None Include="Properties\Icon.png" Pack="true" PackagePath="Properties\Icon.png" />
+		<None Include="README.md" Pack="true" PackagePath="README.md" />
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Loxifi.CompressedFileWriter" Version="0.1.0" />
+	  <PackageReference Include="Loxifi.Extensions.StringExtensions" Version="0.1.0" />
+	</ItemGroup>
+</Project>
