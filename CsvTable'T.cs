@@ -18,7 +18,7 @@ namespace Loxifi.CsvTable
         /// <param name="tableName"></param>
         public CsvTable(string tableName)
         {
-            TableName = tableName;
+            this.TableName = tableName;
         }
 
         /// <summary>
@@ -36,22 +36,22 @@ namespace Loxifi.CsvTable
         /// Constructs a new row with the existing table schema
         /// </summary>
         /// <returns></returns>
-        public CsvRow<TData> NewRow() => new(Columns, this);
+        public CsvRow<TData> NewRow() => new(this.Columns, this);
 
         /// <summary>
         /// Constructs a new row with the existing table schema
         /// </summary>
         /// <param name="items">The items to use to populate the row</param>
         /// <returns></returns>
-        public CsvRow<TData> NewRow(TData[] items) => new(Columns, items, this);
+        public CsvRow<TData> NewRow(TData[] items) => new(this.Columns, items, this);
 
         /// <summary>
         /// A collection of all rows found in this table
         /// </summary>
         public IList<CsvRow<TData>> Rows { get; private set; } = new List<CsvRow<TData>>();
 
-        IEnumerable<string> ICsvAdapter.ColumnNames => Columns.Select(c => c.ColumnName);
+        IEnumerable<string> ICsvAdapter.ColumnNames => this.Columns.Select(c => c.ColumnName);
 
-        IEnumerable<IEnumerable<object?>> ICsvAdapter.Data => Rows.Select(r => r.Items.Cast<object?>());
+        IEnumerable<IEnumerable<object?>> ICsvAdapter.Data => this.Rows.Select(r => r.Items.Cast<object?>());
     }
 }

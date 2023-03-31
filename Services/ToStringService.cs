@@ -1,4 +1,5 @@
-﻿using Loxifi.CsvTable.Interfaces;
+﻿using Loxifi.CsvTable.Exceptions;
+using Loxifi.CsvTable.Interfaces;
 using System.Text;
 
 namespace Loxifi.CsvTable.Services
@@ -39,7 +40,20 @@ namespace Loxifi.CsvTable.Services
                     _ = fileContent.Append(System.Environment.NewLine);
                 }
 
-                _ = fileContent.Append(ToCsvRow(dr, options.QuoteCharacter, prependChar));
+                string toAppend = ToCsvRow(dr, options.QuoteCharacter, prependChar);
+
+                if(options.ValidateResults)
+                {
+                    foreach(char c in toAppend)
+                    {
+                        if(c is '\n' or '\r')
+                        {
+                            throw new NewlineInCsvException(toAppend);
+                        }
+                    }
+                }
+
+                _ = fileContent.Append(toAppend);
 
                 firstLine = false;
             }
@@ -63,15 +77,17 @@ namespace Loxifi.CsvTable.Services
 
             StringBuilder sb = new();
 
-            bool firstItem = false;
+            bool firstItem = true;
 
             foreach (object? value in values)
             {
 
-                if (!firstItem)
+                if (firstItem)
+                {
+                    firstItem = false;
+                } else
                 {
                     _ = sb.Append(',');
-                    firstItem = false;
                 }
 
                 if (quoteCharacter.HasValue)

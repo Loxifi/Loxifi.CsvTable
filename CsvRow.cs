@@ -22,9 +22,9 @@
 
         internal CsvRow(IList<CsvColumn> columns, TData[] items, CsvTable<TData> table)
         {
-            Columns = columns;
-            Items = items;
-            Table = table;
+            this.Columns = columns;
+            this.Items = items;
+            this.Table = table;
         }
 
         /// <summary>

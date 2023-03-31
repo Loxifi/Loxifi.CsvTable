@@ -11,7 +11,7 @@
         /// <param name="columnName"></param>
         public CsvColumn(string columnName)
         {
-            ColumnName = columnName;
+            this.ColumnName = columnName;
         }
 
         /// <summary>
