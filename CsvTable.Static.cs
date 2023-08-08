@@ -1,5 +1,6 @@
 ﻿using Loxifi.Extensions.StringExtensions;
 using System.Data;
+using StringSplitOptions = Loxifi.Extensions.StringExtensions.StringSplitOptions;
 
 namespace Loxifi.CsvTable
 {
@@ -122,7 +123,14 @@ namespace Loxifi.CsvTable
 													 File.ReadAllText(targetfile.FullName) :
 													 ReadFile(targetfile.FullName);
 
-			CsvTable<TData> table = ToCsvTable<TData>(toParse.Split(csvTableOptions.LineSplitOptions).Select(l => l.Trim('\r')), csvTableOptions);
+            StringSplitOptions lineSplit = new()
+            {
+                ItemDelimeter = csvTableOptions.LineDelimeter,
+                QuoteCharacter = '\0',
+                RemoveQuotes = false
+            };
+
+            CsvTable<TData> table = ToCsvTable<TData>(toParse.Split(lineSplit).Select(l => l.Trim('\r')), csvTableOptions);
 
 			table.TableName = Path.GetFileNameWithoutExtension(path);
 
