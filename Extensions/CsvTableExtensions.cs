@@ -31,6 +31,8 @@ namespace Loxifi.CsvTable.Extensions
                 DataRow dr = table.NewRow();
 
                 dr.ItemArray = csvRow.Items.Cast<object>().ToArray();
+
+                table.Rows.Add(dr);
             }
 
             return table;
